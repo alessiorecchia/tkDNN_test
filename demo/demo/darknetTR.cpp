@@ -1,4 +1,5 @@
 #include "darknetTR.h"
+#include "utils.h"
 
 bool gRun;
 bool SAVE_RESULT = false;

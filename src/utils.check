@@ -159,13 +159,13 @@ int checkResult(int size, dnnType *data_d, dnnType *correct_d, bool device, int 
         delete [] correct_h;
     }
 
-        std::cout<<" | ";
-        if(diffs == 0)
-            std::cout<<COL_GREENB<<"OK";
-        else
-            std::cout<<COL_REDB<<"Wrongs: "<<diffs;
+    std::cout<<" | ";
+    if(diffs == 0)
+        std::cout<<COL_GREENB<<"OK";
+    else
+        std::cout<<COL_REDB<<"Wrongs: "<<diffs;
 
-        std::cout<<COL_END<<" ~"<<eps<<"\n";
+    std::cout<<COL_END<<" ~"<<eps<<"\n";
     return diffs;
 }
 
