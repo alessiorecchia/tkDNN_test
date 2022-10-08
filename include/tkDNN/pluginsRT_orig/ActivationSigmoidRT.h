@@ -1,15 +1,15 @@
 #include<cassert>
 #include "../kernels.h"
 
-class ActivationMishRT : public IPlugin {
+class ActivationSigmoidRT : public IPlugin {
 
 public:
-	ActivationMishRT() {
+	ActivationSigmoidRT() {
 
 
 	}
 
-	~ActivationMishRT(){
+	~ActivationSigmoidRT(){
 
 	}
 
@@ -41,7 +41,7 @@ public:
 
 	virtual int enqueue(int batchSize, const void*const * inputs, void** outputs, void* workspace, cudaStream_t stream) override {
 
-		activationMishForward((dnnType*)reinterpret_cast<const dnnType*>(inputs[0]), 
+		activationSIGMOIDForward((dnnType*)reinterpret_cast<const dnnType*>(inputs[0]), 
 											reinterpret_cast<dnnType*>(outputs[0]), batchSize*size, stream);
 		return 0;
 	}
@@ -52,8 +52,9 @@ public:
 	}
 
 	virtual void serialize(void* buffer) override {
-		char *buf = reinterpret_cast<char*>(buffer);
+		char *buf = reinterpret_cast<char*>(buffer),*a=buf;
 		tk::dnn::writeBUF(buf, size);
+		assert(buf == a + getSerializationSize());
 	}
 
 	int size;
